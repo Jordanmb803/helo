@@ -5,3 +5,31 @@
     display: flex;
     flex-direction: row;
 }
+
+.dashboard {
+    width: 90%;
+    height: 100vh;
+    background: lightslategray;
+}
+
+.nav {
+    width: 10%;
+    height: 100vh;
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.profilePic{
+    border-radius: 180%;
+    background: white;
+}
+
+.dashSearchHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}

@@ -9,7 +9,7 @@ class App extends Component {
     
     return (
       <div className="App">
-        <Nav className='nav' />
+        <Nav />
         {routes}
       </div>
     );

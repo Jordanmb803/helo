@@ -18,5 +18,6 @@ massive(CONNECTION_STRING).then( db => {
 
 app.post('/register', controller.register)
 app.post('/login/:username/:password', controller.login)
+app.get('/posts/:id', controller.getPosts)
 
 app.listen(SERVER_PORT, () => console.log(`Port ${SERVER_PORT} is now listening`))

@@ -5,11 +5,13 @@ import { connect } from 'react-redux';
 function Nav(props) {
     console.log(props)
     return (
-        <div>
+        <div className='nav'>
             <div>
-                <img src={props.profile_picture} />
+                <img className='profilePic' src={props.profile_picture} width= '100px' height= '100px'/>
                 <p>{props.username}</p>
+            <div>
                 <Link to='/dashboard'><button>Home</button></Link>
+            </div>  
                 <Link to='/new'><button>New Post</button></Link>
             </div>
             <Link to='/'><button>Logout</button></Link>
