@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getUser } from '../../ducks/reducer';
 
 class Auth extends Component {
     constructor() {
@@ -19,8 +21,8 @@ class Auth extends Component {
         const { username, password, profile_picture } = this.state
         console.log(username, password, profile_picture)
         axios.post('/register', {username, password, profile_picture}).then(res => {
+            this.props.getUser(res.data.id, res.data.username, res.data.profile_picture)
             this.setState({
-                user: res.data,
                 redirect: true
             })
         }) 
@@ -29,8 +31,8 @@ class Auth extends Component {
     login(){
         const { username, password } = this.state
         axios.post(`/login/${username}/${password}`).then(res => {
+            this.props.getUser(res.data.id, res.data.username, res.data.profile_picture)
             this.setState({
-                user: res.data,
                 redirect: true
             })
             console.log(this.state.user.username + ' logged on')
@@ -42,7 +44,6 @@ class Auth extends Component {
             return <Redirect to = "/dashboard"/>
         }
 
-        console.log(this.state)
         return (
             <div>
                 <div>
@@ -59,4 +60,4 @@ class Auth extends Component {
     }
 }
 
-export default Auth;
+export default connect(null, {getUser})(Auth);
