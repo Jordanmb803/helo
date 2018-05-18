@@ -1,12 +1,21 @@
+require('dotenv').config()
 const express = require('express')
     , bodyParser = require('body-parser')
+    , massive = require('massive')
+    , controller = require('./controller')
 
+const {
+    SERVER_PORT,
+    CONNECTION_STRING
+} = process.env
 
 const app = express()
 app.use(bodyParser.json())
 
+massive(CONNECTION_STRING).then( db => {
+    app.set('db', db)
+})
 
+app.post('/register', controller.register)
 
-
-const port = 3005
-app.listen(port, () => console.log(`Port ${port} is now listening`))
+app.listen(SERVER_PORT, () => console.log(`Port ${SERVER_PORT} is now listening`))
