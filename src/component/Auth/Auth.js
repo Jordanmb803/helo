@@ -26,6 +26,17 @@ class Auth extends Component {
         }) 
     }
 
+    login(){
+        const { username, password } = this.state
+        axios.post(`/login/${username}/${password}`).then(res => {
+            this.setState({
+                user: res.data,
+                redirect: true
+            })
+            console.log(this.state.user.username + ' logged on')
+        })
+    }
+
     render() {
         if (this.state.redirect){
             return <Redirect to = "/dashboard"/>
@@ -39,7 +50,7 @@ class Auth extends Component {
                     <input onChange={e => this.setState({ password: e.target.value })} />
                 </div>
                 <div>
-                    <button>Login</button>
+                    <button onClick={() => this.login()}>Login</button>
                     <button onClick={() => this.registerUser()}>Register</button>
                 </div>
             </div>

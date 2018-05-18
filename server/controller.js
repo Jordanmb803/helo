@@ -6,5 +6,12 @@ module.exports = {
             .then( (user) => {
                 res.status(200).send(user[0])
             })
+    },
+    login: (req, res) => {
+        const { username, password } = req.params
+        req.app.get('db').get_user([username, password])
+            .then( user => {
+                res.status(200).send(user[0])
+            })
     }
 }
